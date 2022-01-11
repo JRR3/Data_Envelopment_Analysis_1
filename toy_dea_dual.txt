@@ -1,0 +1,169 @@
+----Working with Engine: 1 ---- 
+
+input_matrix[i,k] [*] :=
+1  2
+2  5
+;
+
+CPLEX 20.1.0.0: optimal solution; objective 0.999998
+0 dual simplex iterations (0 in phase I)
+: input_constraints output_constraints    :=
+1        0.499997         0.499999
+2    1e-06                    .
+;
+
+: input_slack output_slack    :=
+1       0           0
+2       2            .
+;
+
+theta = 1
+
+-------------------------------------
+----Working with Engine: 2 ---- 
+
+input_matrix[i,k] [*] :=
+1  2
+2  3
+;
+
+CPLEX 20.1.0.0: optimal solution; objective 1
+0 simplex iterations (0 in phase I)
+: input_constraints output_constraints    :=
+1        0.499999           0.5
+2    1e-06                    .
+;
+
+: input_slack output_slack    :=
+1       0           0
+2       0            .
+;
+
+theta = 1
+
+-------------------------------------
+----Working with Engine: 3 ---- 
+
+input_matrix[i,k] [*] :=
+1  3
+2  2
+;
+
+CPLEX 20.1.0.0: optimal solution; objective 1
+1 dual simplex iterations (0 in phase I)
+: input_constraints output_constraints    :=
+1         0.2               0.5
+2         0.2                 .
+;
+
+: input_slack output_slack    :=
+1       0           0
+2       0            .
+;
+
+theta = 1
+
+-------------------------------------
+----Working with Engine: 4 ---- 
+
+input_matrix[i,k] [*] :=
+1  5
+2  2
+;
+
+CPLEX 20.1.0.0: optimal solution; objective 0.999998
+1 dual simplex iterations (0 in phase I)
+: input_constraints output_constraints    :=
+1    1e-06                0.499999
+2        0.499997             .
+;
+
+: input_slack output_slack    :=
+1       2           0
+2       0            .
+;
+
+theta = 1
+
+-------------------------------------
+----Working with Engine: 5 ---- 
+
+input_matrix[i,k] [*] :=
+1  6
+2  3
+;
+
+CPLEX 20.1.0.0: optimal solution; objective 0.6666656667
+0 simplex iterations (0 in phase I)
+: input_constraints output_constraints    :=
+1    1e-06                0.333333
+2        0.333331             .
+;
+
+: input_slack output_slack    :=
+1       1           0
+2       0            .
+;
+
+theta = 0.666667
+
+-------------------------------------
+----Working with Engine: 6 ---- 
+
+input_matrix[i,k] [*] :=
+1  3
+2  6
+;
+
+CPLEX 20.1.0.0: optimal solution; objective 0.6666656667
+2 dual simplex iterations (0 in phase I)
+: input_constraints output_constraints    :=
+1        0.333331         0.333333
+2    1e-06                    .
+;
+
+: input_slack output_slack    :=
+1       0           0
+2       1            .
+;
+
+theta = 0.666667
+
+-------------------------------------
+----Working with Engine: 7 ---- 
+
+input_matrix[i,k] [*] :=
+1  4
+2  4
+;
+
+CPLEX 20.1.0.0: optimal solution; objective 0.625
+1 dual simplex iterations (0 in phase I)
+: input_constraints output_constraints    :=
+1        0.125             0.3125
+2        0.125                .
+;
+
+: input_slack output_slack    :=
+1       0           0
+2       0            .
+;
+
+theta = 0.625
+
+-------------------------------------
+Engine & outputs & inputs & w & u & s_w & s_u & theta & tau 
+1 & (2.000000,) & (2.000000,5.000000,) & (0.499999,) & (0.499997,0.000001,) & (0.000000,) & (0.000000,2.000000,) & 1.000000 & 0.999998 \\ 
+\hline
+2 & (2.000000,) & (2.000000,3.000000,) & (0.500000,) & (0.499999,0.000001,) & (0.000000,) & (0.000000,0.000000,) & 1.000000 & 1.000000 \\ 
+\hline
+3 & (2.000000,) & (3.000000,2.000000,) & (0.500000,) & (0.200000,0.200000,) & (0.000000,) & (0.000000,0.000000,) & 1.000000 & 1.000000 \\ 
+\hline
+4 & (2.000000,) & (5.000000,2.000000,) & (0.499999,) & (0.000001,0.499997,) & (0.000000,) & (2.000000,0.000000,) & 1.000000 & 0.999998 \\ 
+\hline
+5 & (2.000000,) & (6.000000,3.000000,) & (0.333333,) & (0.000001,0.333331,) & (0.000000,) & (1.000000,0.000000,) & 0.666667 & 0.666666 \\ 
+\hline
+6 & (2.000000,) & (3.000000,6.000000,) & (0.333333,) & (0.333331,0.000001,) & (0.000000,) & (0.000000,1.000000,) & 0.666667 & 0.666666 \\ 
+\hline
+7 & (2.000000,) & (4.000000,4.000000,) & (0.312500,) & (0.125000,0.125000,) & (0.000000,) & (0.000000,0.000000,) & 0.625000 & 0.625000 \\ 
+\hline

@@ -1,0 +1,86 @@
+option solver './cplex';
+option log_file './projects/eff/toy_dea_dual.txt';
+model './projects/eff/toy_dea_dual.mod';
+data './projects/eff/toy_dea_dual.dat';
+
+problem dual_problem: 
+theta, lambda, input_slack, output_slack,
+dual_obj,
+input_constraints,
+output_constraints;
+
+#problem primal_problem: 
+#u, w,
+#primal_obj,
+#virtual_inputs_sums_to_one,
+#u_constraints,
+#w_constraints,
+#bounded_efficiency_constraints;
+
+for {k in ENGINES}
+{
+    printf "----Working with Engine: %d ---- \n\n", k;
+    display {i in INPUTS} input_matrix[i,k];
+    let E0 := k;
+
+    solve dual_problem;
+    let {j in OUTPUTS} s_w[j,k] := output_slack[j];
+    let {j in INPUTS} s_u[j,k] := input_slack[j];
+    let theta_star[k] := theta;
+    let tau[k] := dual_obj;
+    let {j in OUTPUTS} w_out[j,k] := output_constraints.dual[j];
+    let {j in INPUTS} u_in[j,k] := input_constraints.dual[j];
+
+    display input_constraints, output_constraints;
+    display input_slack, output_slack;
+    display theta;
+
+    #solve primal_problem;
+    #let {j in OUTPUTS} w_out[j,k] := w[j];
+    #let {j in INPUTS} u_in[j,k] := u[j];
+    #display w,u;
+    printf "-------------------------------------\n";
+    
+};
+
+printf 'Engine & outputs & inputs & w & u & s_w & s_u & theta & tau \n';
+
+for {k in ENGINES}
+{
+    #Engine number (1)
+    printf '%d & ', k;
+    #Engine output (2)
+    printf '(';
+    printf {j in OUTPUTS}:'%f,', output_matrix[j,k];
+    printf ') & ';
+    #Engine input (3)
+    printf '(';
+    printf {j in INPUTS}: '%f,', input_matrix[j,k];
+    printf ') & ';
+    #w out (4)
+    printf '(';
+    printf {j in OUTPUTS}:'%f,', w_out[j,k];
+    printf ') & ';
+    #u in (5)
+    printf '(';
+    printf {j in INPUTS}: '%f,', u_in[j,k];
+    printf ') & ';
+    #w slack (6)
+    printf '(';
+    printf {j in OUTPUTS}:'%f,', s_w[j,k];
+    printf ') & ';
+    #u slack (7)
+    printf '(';
+    printf {j in INPUTS}: '%f,', s_u[j,k];
+    printf ') & ';
+    #Theta (8)
+    printf '%f & ', theta_star[k];
+    #Tau (9)
+    printf '%f \\\\ ', tau[k];
+    printf '\n';
+    printf '\\hline';
+    printf '\n';
+    
+};
+option log_file '';
+close;
